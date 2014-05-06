@@ -121,7 +121,11 @@ static int linuxspi_spi_duplex(PROGRAMMER* pgm, unsigned char* tx, unsigned char
     };
     
     int ret = ioctl(fd, SPI_IOC_MESSAGE(1), &tr);
-    close(fd);
+    
+	// I want to keep reset around - I like it :-p
+	// Maybe I will put a flag for this in the config 
+	// But its Midnight and I'm being lazy :-p
+	close(fd);
     
     if (ret != len)
     {
