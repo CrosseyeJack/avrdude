@@ -121,7 +121,7 @@ static int linuxspi_spi_duplex(PROGRAMMER* pgm, unsigned char* tx, unsigned char
     };
     
     int ret = ioctl(fd, SPI_IOC_MESSAGE(1), &tr);
-    close(fd);
+    // close(fd);
     
     if (ret != len)
     {
@@ -244,15 +244,15 @@ static int linuxspi_open(PROGRAMMER* pgm, char* port)
 
 static void linuxspi_close(PROGRAMMER* pgm)
 {
-    char* buf;
+    //char* buf;
     
     //set reset to input
-    linuxspi_gpio_op_wr(pgm, LINUXSPI_GPIO_DIRECTION, pgm->pinno[PIN_AVR_RESET], "in");
+    //linuxspi_gpio_op_wr(pgm, LINUXSPI_GPIO_DIRECTION, pgm->pinno[PIN_AVR_RESET], "in");
     
     //unexport reset
-    buf = malloc(32);
-    sprintf(buf, "%d", pgm->pinno[PIN_AVR_RESET]);
-    linuxspi_gpio_op_wr(pgm, LINUXSPI_GPIO_UNEXPORT, pgm->pinno[PIN_AVR_RESET], buf);
+    // buf = malloc(32);
+    // sprintf(buf, "%d", pgm->pinno[PIN_AVR_RESET]);
+    //linuxspi_gpio_op_wr(pgm, LINUXSPI_GPIO_UNEXPORT, pgm->pinno[PIN_AVR_RESET], buf);
 }
 
 static void linuxspi_disable(PROGRAMMER* pgm)
